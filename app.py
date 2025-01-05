@@ -15,6 +15,14 @@ def preprocess_data(data):
     data['Education'] = data['Education'].map(education_mapping)
     data['Marital_Status'] = data['Marital_Status'].map(marital_status_mapping)
 
+    # Ensure the input data matches the training features
+    required_features = [
+        'Education', 'Marital_Status', 'Income', 'Recency', 'Complain',
+        'Response', 'Age', 'Tot_Expenses', 'Tot_AcceptedCmp', 'Tot_Purchases',
+        'Tot_Children', 'Tot_adults', 'Customer_Since'
+    ]
+    data = data[required_features]
+
     return data
 
 # Load the trained model
