@@ -8,7 +8,13 @@ def preprocess_data(data):
     if 'Income' in data.columns:
         data['Income'].fillna(data['Income'].median(), inplace=True)
     
-    # Add other preprocessing logic if necessary
+    # Encoding categorical features
+    education_mapping = {'Undergradute': 0, 'Graduation': 1, 'Postgraduate': 2, 'PhD': 3}
+    marital_status_mapping = {'Single': 0, 'Couple':1}
+
+    data['Education'] = data['Education'].map(education_mapping)
+    data['Marital_Status'] = data['Marital_Status'].map(marital_status_mapping)
+
     return data
 
 # Load the trained model
@@ -32,7 +38,7 @@ model = load_model()
 st.header("Enter Customer Details")
 
 # User input fields
-education = st.selectbox("Education", ["Undergraduate","Graduation", "Postgraduate", "PhD"])
+education = st.selectbox("Education", ["Graduation", "Postgraduate", "PhD", "Undergraduate"])
 marital_status = st.selectbox("Marital Status", ["Single","Couple"])
 income = st.number_input("Income (in $)", min_value=1000, max_value=1000000, value=50000)
 recency = st.number_input("Recency (days since last purchase)", min_value=0, max_value=1000, value=30)
