@@ -99,14 +99,14 @@ if st.button("Predict Personality"):
                 st.write("The Customer belongs the Middle Class.")
             else:
                 st.write("The Customer belongs the High Class.")
-    personality_map = {0: "Type A", 1: "Type B", 2: "Type C"}  # Example mapping
-    st.subheader("Personality Breakdown")
-    personality_counts = [prediction[0], 100 - prediction[0]]  # Dummy values for illustration
-    labels = ['Predicted', 'Other']
-    fig, ax = plt.subplots()
-    ax.pie(personality_counts, labels=labels, autopct='%1.1f%%', startangle=90)
-    ax.axis('equal')
-    st.pyplot(fig)
+        personality_map = {0: "Type A", 1: "Type B", 2: "Type C"}  # Example mapping
+        st.subheader("Personality Breakdown")
+        personality_counts = [prediction[0], 100 - prediction[0]]  # Dummy values for illustration
+        labels = ['Predicted', 'Other']
+        fig, ax = plt.subplots()
+        ax.pie(personality_counts, labels=labels, autopct='%1.1f%%', startangle=90)
+        ax.axis('equal')
+        st.pyplot(fig)
     except Exception as e:
         st.error(f"An error occurred during prediction: {e}")
 
