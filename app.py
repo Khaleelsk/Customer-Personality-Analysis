@@ -35,6 +35,11 @@ def load_model():
 st.title("Customer Personality Analysis")
 
 st.write("""
+Customer Personality Analysis is one the most important applications of unsupervised learning. 
+Using clustering techniques, companies can identify the several segments of customers allowing them to target the potential user base. 
+In this machine learning project, we will make use of K-means clustering which is the essential algorithm for clustering unlabeled dataset. 
+Before ahead in this project, learn what actually Customer Personality Analysis is.
+
 This app predicts customer personality traits based on input data.
 Provide the necessary inputs and get predictions!
 """)
@@ -88,6 +93,12 @@ if st.button("Predict Personality"):
         prediction = model.predict(processed_input)
         if prediction==1:
             st.success(f"Predicted Personality: Customer is Active with the Campaigns.}")
+            if income<=30000:
+                st.write("The Customer belongs the Lower Class.")
+            elif income>30000 && income<=60000 :
+                st.write("The Customer belongs the Middle Class.")
+            else:
+                st.write("The Customer belongs the High Class.")
     except Exception as e:
         st.error(f"An error occurred during prediction: {e}")
 
