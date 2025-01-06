@@ -92,7 +92,7 @@ if st.button("Predict Personality"):
     try:
         prediction = model.predict(processed_input)
         if prediction==1:
-            st.success(f"Predicted Personality: Customer is Active with the Campaigns.}")
+            st.success(f"Predicted Personality: Customer is Active with the Campaigns.")
             if income<=30000:
                 st.write("The Customer belongs the Lower Class.")
             elif income>30000 && income<=60000 :
