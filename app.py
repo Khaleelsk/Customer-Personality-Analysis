@@ -46,9 +46,9 @@ model = load_model()
 st.header("Enter Customer Details")
 
 # User input fields
-education = st.selectbox("Education", ["Graduation", "Postgraduate", "PhD", "Undergraduate"])
+education = st.selectbox("Education", [ "Undergraduate","Graduation", "Postgraduate", "PhD"])
 marital_status = st.selectbox("Marital Status", ["Single","Couple"])
-income = st.number_input("Income (in $)", min_value=1000, max_value=1000000, value=50000)
+income = st.number_input("Income ($)", min_value=1000, max_value=1000000, value=50000)
 recency = st.number_input("Recency (days since last purchase)", min_value=0, max_value=1000, value=30)
 complain = st.selectbox("Has Complained?", ["No", "Yes"])
 response = st.selectbox("Responded to Last Campaign?", ["No", "Yes"])
@@ -86,7 +86,8 @@ processed_input = preprocess_data(input_data)
 if st.button("Predict Personality"):
     try:
         prediction = model.predict(processed_input)
-        st.success(f"Predicted Personality: {prediction[0]}")
+        if prediction==1:
+            st.success(f"Predicted Personality: Customer is Active with the Campaigns.}")
     except Exception as e:
         st.error(f"An error occurred during prediction: {e}")
 
