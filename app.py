@@ -36,14 +36,10 @@ def load_model():
 st.title("Customer Personality Analysis")
 
 st.write("""
-Customer Personality Analysis is one the most important applications of unsupervised learning. 
-Using clustering techniques, companies can identify the several segments of customers allowing them to target the potential user base. 
-In this machine learning project, we will make use of K-means clustering which is the essential algorithm for clustering unlabeled dataset. 
-Before ahead in this project, learn what actually Customer Personality Analysis is.
+Customer Personality Analysis is one the most important applications of unsupervised learning.Using clustering techniques, companies can identify the several segments of customers allowing them to target the potential user base. 
+In this machine learning project, we will make use of K-means clustering which is the essential algorithm for clustering unlabeled dataset. Before ahead in this project, learn what actually Customer Personality Analysis is.
 
-This app predicts customer personality traits based on input data.
-Provide the necessary inputs and get predictions!
-""")
+This app predicts customer personality traits based on input data.Provide the necessary inputs and get predictions!""")
 
 # Load model
 model = load_model()
@@ -55,17 +51,17 @@ st.header("Enter Customer Details")
 education = st.selectbox("Education", [ "Undergraduate","Graduation", "Postgraduate", "PhD"])
 marital_status = st.selectbox("Marital Status", ["Single","Couple"])
 income = st.number_input("Income ($)", min_value=1000, max_value=1000000, value=50000)
-recency = st.number_input("Recency (days since last purchase)", min_value=0, max_value=1000, value=30)
+recency = st.number_input("Recency (days since last purchase)", min_value=0, max_value=100, value=30)
 complain = st.selectbox("Has Complained?", ["No", "Yes"])
 response = st.selectbox("Responded to Last Campaign?", ["No", "Yes"])
 age = st.number_input("Age", min_value=18, max_value=100, value=30)
-tot_expenses = st.number_input("Total Expenses (in $)", min_value=0, max_value=100000, value=1000)
-tot_accepted_cmp = st.number_input("Total Accepted Campaigns", min_value=0, max_value=10, value=0)
-tot_purchases = st.number_input("Total Purchases", min_value=0, max_value=100, value=10)
+tot_expenses = st.number_input("Total Expenses (in $)", min_value=0, max_value=3000, value=1000)
+tot_accepted_cmp = st.number_input("Total Accepted Campaigns", min_value=0, max_value=5, value=0)
+tot_purchases = st.number_input("Total Purchases", min_value=0, max_value=45, value=10)
 tot_children = st.number_input("Total Children", min_value=0, max_value=10, value=1)
 tot_adults = st.number_input("Total Adults", min_value=1, max_value=10, value=2)
 family_size = st.number_input("Family Size", min_value=1, max_value=10, value=3)
-customer_since = st.number_input("Customer Since (years)", min_value=0, max_value=50, value=5)
+customer_since = st.number_input("Customer Since (years)", min_value=0, max_value=700, value=5)
 
 # Prepare input data
 input_data = pd.DataFrame({
@@ -100,14 +96,7 @@ if st.button("Predict Personality"):
                 st.write("The Customer belongs the Middle Class.")
             else:
                 st.write("The Customer belongs the High Class.")
-        personality_map = {0: "Type A", 1: "Type B", 2: "Type C"}  # Example mapping
-        st.subheader("Personality Breakdown")
-        personality_counts = [prediction[0], 100 - prediction[0]]  # Dummy values for illustration
-        labels = ['Predicted', 'Other']
-        fig, ax = plt.subplots()
-        ax.pie(personality_counts, labels=labels, autopct='%1.1f%%', startangle=90)
-        ax.axis('equal')
-        st.pyplot(fig)
+            
     except Exception as e:
         st.error(f"An error occurred during prediction: {e}")
 
