@@ -1,8 +1,7 @@
 import streamlit as st
 import pandas as pd
 import pickle
-import matplotlib.pyplot as plt
-import seaborn as sns
+
 # Preprocessing function
 def preprocess_data(data):
     # Handle missing values if needed
@@ -27,7 +26,7 @@ def preprocess_data(data):
     return data
 
 # Load the trained model
-@st.cache(allow_output_mutation=True)
+@st.cache_resource
 def load_model():
     with open("CPA_model.pkl", "rb") as file:
         return pickle.load(file)
