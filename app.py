@@ -95,7 +95,7 @@ if st.button("Predict Personality"):
             st.success(f"Predicted Personality: Customer is Active with the Campaigns.")
             if income<=30000:
                 st.write("The Customer belongs the Lower Class.")
-            elif income>30000 && income<=60000 :
+            elif income>30000 and income<=60000 :
                 st.write("The Customer belongs the Middle Class.")
             else:
                 st.write("The Customer belongs the High Class.")
