@@ -8,7 +8,15 @@ def preprocess_data(data):
     if 'Income' in data.columns:
         data['Income'].fillna(data['Income'].median(), inplace=True)
 
-    # Add other preprocessing logic if necessary
+    # Convert categorical columns to numeric if necessary
+    if 'Education' in data.columns:
+        education_map = {"Undergraduate": 1, "Graduation": 2, "Postgraduate": 3, "PhD": 4}
+        data['Education'] = data['Education'].map(education_map)
+
+    if 'Marital_Status' in data.columns:
+        marital_status_map = {"Single": 0, "Couple": 1}
+        data['Marital_Status'] = data['Marital_Status'].map(marital_status_map)
+
     return data
 
 # Load the trained model
