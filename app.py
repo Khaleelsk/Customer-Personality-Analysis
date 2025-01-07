@@ -17,6 +17,10 @@ def preprocess_data(data):
         marital_status_map = {"Single": 0, "Couple": 1}
         data['Marital_Status'] = data['Marital_Status'].map(marital_status_map)
 
+    # Drop any extra columns to ensure model compatibility
+    expected_features = ["Education", "Marital_Status", "Income", "Recency", "Complain", "Response", "Age", "Tot_Expenses", "Tot_AcceptedCmp", "Tot_Purchases", "Tot_Children", "Tot_adults", "Customer_Since"]
+    data = data[expected_features]
+
     return data
 
 # Load the trained model
@@ -54,7 +58,6 @@ tot_accepted_cmp = st.number_input("Total Accepted Campaigns", min_value=0, max_
 tot_purchases = st.number_input("Total Purchases", min_value=0, max_value=100, value=10)
 tot_children = st.number_input("Total Children", min_value=0, max_value=10, value=1)
 tot_adults = st.number_input("Total Adults", min_value=1, max_value=10, value=2)
-family_size = st.number_input("Family Size", min_value=1, max_value=10, value=3)
 customer_since = st.number_input("Customer Since (years)", min_value=0, max_value=50, value=5)
 
 # Prepare input data
@@ -71,7 +74,6 @@ input_data = pd.DataFrame({
     "Tot_Purchases": [tot_purchases],
     "Tot_Children": [tot_children],
     "Tot_adults": [tot_adults],
-    "Family_size": [family_size],
     "Customer_Since": [customer_since]
 })
 
