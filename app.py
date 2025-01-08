@@ -24,7 +24,7 @@ def preprocess_data(data):
     return data
 
 # Load the trained model
-@st.cache()
+@st.cache_data
 def load_model():
     with open("CPA_model.pkl", "rb") as file:
         return pickle.load(file)
